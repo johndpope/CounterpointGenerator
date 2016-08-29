@@ -27,11 +27,11 @@ CounterpointWriter::CounterpointWriter(const Staff& cantus_firmus, const Staff& 
 bool CounterpointWriter::is_valid_interval(int interval) const {
 	set<int>::iterator it = allowable_intervals_.find(interval);
 	if (it != allowable_intervals_.end()) {
-		cout << "Valid Interval " << interval << endl;
+		//cout << "Valid Interval " << interval << endl;
 		return true;
 	}
 	else {
-		cout << "Invalid Interval " << interval << endl;
+		//cout << "Invalid Interval " << interval << endl;
 		return false;
 	}
 }
