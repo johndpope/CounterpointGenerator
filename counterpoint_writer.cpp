@@ -5,6 +5,7 @@
 #include "tree_util.hh"
 #include <ctime>
 #include <set>
+#include <cstdlib>
 using namespace std;
 
 CounterpointWriter::CounterpointWriter(const Staff& cantus_firmus, const Staff& counterpoint)  {
@@ -15,10 +16,6 @@ CounterpointWriter::CounterpointWriter(const Staff& cantus_firmus, const Staff& 
 	Note first_counterpoint = first_note + 7;
 	counterpoint_.AddNote(first_counterpoint); // starts on a P5
 	
-	tree<Note>::iterator top, next;
-	top = possible_notes_.begin();
-	next = possible_notes_.insert(top, first_counterpoint);
-
 	current_interval_ = 12;
 	is_perfect_consonance_ = true;
 	allowable_intervals_ = { 3,4,7,8,9,12,15,16 }; // m3, M3, P4, P5, m6, M6, P8, m10, M10
@@ -86,6 +83,43 @@ void CounterpointWriter::NextNote() {
 		is_perfect_consonance_ = false;
 	}
 
+}
+
+void CounterpointWriter::GeneratePossibleNotes() {
+	tree<Note>::iterator top, next;
+	top = possible_notes_.begin();
+	next = possible_notes_.insert(top, counterpoint_[0]);
+	bool is_first_time = true;
+	for (int i = 1; i < cantus_firmus_.NumberOfNotes(); ++i) {
+		cout << cantus_firmus_[i] << ": ";
+		tree<Note>::fixed_depth_iterator tree_iter = possible_notes_.begin_fixed(next, 0);
+		for (tree_iter; possible_notes_.is_valid(tree_iter); ++tree_iter) {
+			cout << (*tree_iter) << " ";
+			/*
+			tree<Note>::fixed_depth_iterator iter_parent = possible_notes_.parent(tree_iter);
+			if (is_first_time) {
+				cout << "yep ";
+				is_first_time = false;
+				continue;
+			}
+			int last_pitch = (*iter_parent).absolute_pitch();
+			int this_pitch = (*tree_iter).absolute_pitch();
+			bool can_leap = (abs(last_pitch - this_pitch) < 3); // you can leap if the last interval was a step
+			cout << can_leap << " ";
+			*/
+			set<int>::iterator interval_iter_end = /*can_leap ?*/ allowable_intervals_.end(); // : allowable_intervals_.find(3);
+			for (set<int>::iterator interval_iter = allowable_intervals_.begin(); interval_iter != interval_iter_end; ++interval_iter) {
+				Note possible_note = cantus_firmus_[i] + *interval_iter;
+				//cout << possible_note << " ";
+				next = possible_notes_.append_child(tree_iter, possible_note);
+			}
+			cout << endl;
+			kptree::print_tree_bracketed(possible_notes_);
+			cout << endl;
+		}
+		cout << endl;
+	}
+	cout << "======================" << endl;
 }
 
 Note CounterpointWriter::ParallelMotion() {

@@ -22,6 +22,7 @@ private:
 public:
 	CounterpointWriter(const Staff& cantus_firmus, const Staff& counterpoint);  // writes first note of counterpoint
 	void NextNote();
+	void GeneratePossibleNotes();
 
 	// accessors
 	Staff cantus_firmus() const { return cantus_firmus_; }
