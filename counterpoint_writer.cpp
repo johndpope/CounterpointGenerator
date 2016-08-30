@@ -90,8 +90,6 @@ void CounterpointWriter::GeneratePossibleNotes() {
 	top = possible_notes_.begin();
 	next = possible_notes_.insert(top, counterpoint_[0]);
 	bool is_first_time = true;
-	for (int i = 1; i < cantus_firmus_.NumberOfNotes(); ++i) {
-		cout << cantus_firmus_[i] << ": ";
 		tree<Note>::breadth_first_queued_iterator tree_iter = possible_notes_.begin_breadth_first();
 		for (tree_iter; tree_iter != possible_notes_.end_breadth_first(); ++tree_iter) {
 			int current_depth = possible_notes_.depth(tree_iter);
@@ -108,18 +106,24 @@ void CounterpointWriter::GeneratePossibleNotes() {
 			bool can_leap = (abs(last_pitch - this_pitch) < 3); // you can leap if the last interval was a step
 			cout << can_leap << " ";
 			*/
-			set<int>::iterator interval_iter_end = /*can_leap ?*/ allowable_intervals_.end(); // : allowable_intervals_.find(3);
-			for (set<int>::iterator interval_iter = allowable_intervals_.begin(); interval_iter != interval_iter_end; ++interval_iter) {
-				Note possible_note = cantus_firmus_[i] + *interval_iter;
-				//cout << possible_note << " ";
-				next = possible_notes_.append_child(tree_iter, possible_note);
+			bool before_last_note = (current_depth < cantus_firmus_.NumberOfNotes());
+			cout << before_last_note << " ";
+			if (before_last_note) {
+				set<int>::iterator interval_iter_end = /*can_leap ?*/ ++allowable_intervals_.find(4); // : allowable_intervals_.find(3);
+				for (set<int>::iterator interval_iter = allowable_intervals_.begin(); interval_iter != interval_iter_end; ++interval_iter) {
+					Note possible_note = cantus_firmus_[current_depth] + *interval_iter;
+					//cout << possible_note << " ";
+					next = possible_notes_.append_child(tree_iter, possible_note);
+				}
+			}
+			else {
+				break;
 			}
 			cout << endl;
 			//kptree::print_tree_bracketed(possible_notes_);
 			cout << endl;
 		}
 		cout << endl;
-	}
 	cout << "======================" << endl;
 }
 
