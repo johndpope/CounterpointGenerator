@@ -92,9 +92,10 @@ void CounterpointWriter::GeneratePossibleNotes() {
 	bool is_first_time = true;
 	for (int i = 1; i < cantus_firmus_.NumberOfNotes(); ++i) {
 		cout << cantus_firmus_[i] << ": ";
-			cout << (*tree_iter) << " ";
 		tree<Note>::breadth_first_queued_iterator tree_iter = possible_notes_.begin_breadth_first();
 		for (tree_iter; tree_iter != possible_notes_.end_breadth_first(); ++tree_iter) {
+			int current_depth = possible_notes_.depth(tree_iter);
+			cout << current_depth << " " << possible_notes_.size() << " ";
 			/*
 			tree<Note>::fixed_depth_iterator iter_parent = possible_notes_.parent(tree_iter);
 			if (is_first_time) {
@@ -114,7 +115,7 @@ void CounterpointWriter::GeneratePossibleNotes() {
 				next = possible_notes_.append_child(tree_iter, possible_note);
 			}
 			cout << endl;
-			kptree::print_tree_bracketed(possible_notes_);
+			//kptree::print_tree_bracketed(possible_notes_);
 			cout << endl;
 		}
 		cout << endl;
