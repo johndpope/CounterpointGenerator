@@ -102,7 +102,7 @@ void CounterpointWriter::GeneratePossibleNotes() {
 		if (tree_iter_parent != possible_notes_.end_breadth_first()) { // if this is not the first note, i.e. no parent
 			int last_pitch = (*tree_iter_parent).absolute_pitch();
 			int this_pitch = (*tree_iter).absolute_pitch();
-			bool can_leap = (abs(last_pitch - this_pitch) < 3); // you can leap if the last interval was a step
+			can_leap = (abs(last_pitch - this_pitch) < 3); // you can leap if the last interval was a step
 			cout << can_leap << " ";
 		}
 		bool before_last_note = (current_depth < cantus_firmus_.NumberOfNotes());
