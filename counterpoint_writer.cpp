@@ -108,9 +108,10 @@ void CounterpointWriter::GeneratePossibleNotes() {
 		bool before_last_note = (current_depth < cantus_firmus_.NumberOfNotes());
 		cout << before_last_note << " ";
 		if (before_last_note) {
-			set<int>::iterator interval_iter_end = /*can_leap ?*/ ++allowable_intervals_.find(4); // : allowable_intervals_.find(3);
-			for (set<int>::iterator interval_iter = allowable_intervals_.begin(); interval_iter != interval_iter_end; ++interval_iter) {
-				Note possible_note = cantus_firmus_[current_depth] + *interval_iter;
+			set<int>::iterator leap_iter_begin = can_leap ? allowable_leaps_.begin() : allowable_steps_.begin();
+			set<int>::iterator leap_iter_end = can_leap ? allowable_leaps_.end() : allowable_steps_.end();
+			for (set<int>::iterator leap_iter = leap_iter_begin; leap_iter != leap_iter_end; ++leap_iter) {
+				Note possible_note = *tree_iter + *leap_iter;
 				//cout << possible_note << " ";
 				next = possible_notes_.append_child(tree_iter, possible_note);
 			}
