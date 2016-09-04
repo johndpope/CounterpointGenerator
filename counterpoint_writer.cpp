@@ -96,13 +96,14 @@ void CounterpointWriter::GeneratePossibleNotes() {
 		int current_depth = possible_notes_.depth(tree_iter);
 		cout << current_depth << " " << possible_notes_.size() << " ";
 		/*
-		tree<Note>::fixed_depth_iterator iter_parent = possible_notes_.parent(tree_iter);
 		if (is_first_time) {
 			cout << "yep ";
 			is_first_time = false;
 			continue;
 		}
 		int last_pitch = (*iter_parent).absolute_pitch();
+		tree<Note>::breadth_first_queued_iterator tree_iter_parent = possible_notes_.parent(tree_iter);
+		int last_pitch = (*tree_iter_parent).absolute_pitch();
 		int this_pitch = (*tree_iter).absolute_pitch();
 		bool can_leap = (abs(last_pitch - this_pitch) < 3); // you can leap if the last interval was a step
 		cout << can_leap << " ";
