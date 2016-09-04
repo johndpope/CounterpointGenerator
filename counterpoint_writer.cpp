@@ -18,7 +18,7 @@ CounterpointWriter::CounterpointWriter(const Staff& cantus_firmus, const Staff& 
 	
 	current_interval_ = 12;
 	is_perfect_consonance_ = true;
-	allowable_intervals_ = { 3,4,7,8,9,12,15,16 }; // m3, M3, P4, P5, m6, M6, P8, m10, M10
+	allowable_intervals_ = { 3,4/*,7,8,9,12,15,16 */}; // m3, M3, P4, P5, m6, M6, P8, m10, M10
 	allowable_leaps_ = { /*-9, -8, -7, -6, -5,*/ -4, -3, -2, /*-1, 0, 1,*/ 2, 3, 4/*, 5, 7, 8, 9*/ }; // not aug4/dim5, maj7, min7
 	allowable_steps_ = { 0, 1, 2 };
 }

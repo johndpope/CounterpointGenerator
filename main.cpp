@@ -26,7 +26,7 @@ int main() {
 
 	CounterpointWriter c(cantus_firmus, counterpoint);
 	c.GeneratePossibleNotes();
-
+	/*
 	// beginning the counterpoint
 	for (int i = 1; i < c.cantus_firmus().NumberOfNotes(); i++) { // start at 1 - 0th note initialized in constructor
 		c.NextNote();
@@ -39,4 +39,5 @@ int main() {
 	c.counterpoint().PrintStaffToFile("test.ly", fout);
 	c.cantus_firmus().PrintStaffToFile("test.ly", fout);
 	c.cantus_firmus().PrintEndToFile("test.ly", fout);
+	*/
 }
