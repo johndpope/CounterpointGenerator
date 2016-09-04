@@ -17,6 +17,8 @@ private:
 	int current_interval_; // interval between cantus firmus and counterpoint
 	bool is_perfect_consonance_;
 	set<int> allowable_intervals_; // set of allowable intervals
+	set<int> allowable_leaps_;
+	set<int> allowable_steps_;
 	tree<Note> possible_notes_;
 
 public:
