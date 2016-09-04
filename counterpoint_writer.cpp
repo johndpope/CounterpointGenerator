@@ -91,7 +91,7 @@ void CounterpointWriter::GeneratePossibleNotes() {
 	next = possible_notes_.insert(top, counterpoint_[0]);
 	bool can_leap = true;
 
-	tree<Note>::breadth_first_queued_iterator tree_iter = possible_notes_.begin_breadth_first();
+	tree<Note>::breadth_first_queued_iterator tree_iter = next;
 	for (tree_iter; tree_iter != possible_notes_.end_breadth_first(); ++tree_iter) {
 		int current_depth = possible_notes_.depth(tree_iter);
 		cout << current_depth << " " << possible_notes_.size() << " ";
