@@ -88,12 +88,10 @@ void CounterpointWriter::NextNote() {
 }
 
 void CounterpointWriter::GeneratePossibleNotes() {
-	tree<Note>::iterator top, next;
-	top = possible_notes_.begin();
-	next = possible_notes_.insert(top, counterpoint_[0]);
+	tree<Note>::iterator top = possible_notes_.insert(possible_notes_.begin(), counterpoint_[0]);
 	bool can_leap = true;
 
-	tree<Note>::breadth_first_queued_iterator tree_iter = next;
+	tree<Note>::breadth_first_queued_iterator tree_iter = top;
 	for (tree_iter; tree_iter != possible_notes_.end_breadth_first(); ++tree_iter) {
 		int current_depth = possible_notes_.depth(tree_iter);
 		cout << current_depth << " " << possible_notes_.size() << " ";
@@ -113,7 +111,7 @@ void CounterpointWriter::GeneratePossibleNotes() {
 			for (set<int>::iterator leap_iter = leap_iter_begin; leap_iter != leap_iter_end; ++leap_iter) {
 				Note possible_note = *tree_iter + *leap_iter;
 				//cout << possible_note << " ";
-				next = possible_notes_.append_child(tree_iter, possible_note);
+				possible_notes_.append_child(tree_iter, possible_note);
 			}
 		}
 		else {
