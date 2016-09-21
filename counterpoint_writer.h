@@ -30,17 +30,17 @@ public:
 	 * Gets the highest note on the branch of possible_notes_ the child_note is a part of.
 	 * Assumes the child_note is the latest note in this particular branch.
 	 */
-	Note GetMaxNote(tree<Note>::breadth_first_queued_iterator child_note);
+	Note GetMaxNote(tree<Note>::breadth_first_queued_iterator child_note_iter);
 	/*
 	 * Gets the lowest note on the branch of possible_notes_ the child_note is a part of.
 	 * Assumes the child_note is the latest note in this particular branch.
 	 */
-	Note GetMinNote(tree<Note>::breadth_first_queued_iterator child_note);
+	Note GetMinNote(tree<Note>::breadth_first_queued_iterator child_note_iter);
 	/*
 	 * Gets the range of the branch of possible_notes_ the child_note is a part of.
 	 * Assumes the child_note is the latest note in this particular branch.
 	 */
-	int GetRange(tree<Note>::breadth_first_queued_iterator child_note);
+	int GetRange(tree<Note>::breadth_first_queued_iterator child_note_iter);
 
 	// accessors
 	Staff cantus_firmus() const { return cantus_firmus_; }
