@@ -36,6 +36,12 @@ public:
 	 * Assumes the child_note is the latest note in this particular branch.
 	 */
 	Note GetMinNote(tree<Note>::breadth_first_queued_iterator child_note);
+	/*
+	 * Gets the range of the branch of possible_notes_ the child_note is a part of.
+	 * Assumes the child_note is the latest note in this particular branch.
+	 */
+	int GetRange(tree<Note>::breadth_first_queued_iterator child_note);
+
 	// accessors
 	Staff cantus_firmus() const { return cantus_firmus_; }
 	Staff counterpoint() const { return counterpoint_; }
