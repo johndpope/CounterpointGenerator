@@ -152,6 +152,24 @@ Note CounterpointWriter::GetMinNote(tree<Note>::breadth_first_queued_iterator ch
 	return min_note;
 }
 
+int CounterpointWriter::GetRange(tree<Note>::breadth_first_queued_iterator child_note_iter) {
+	Note max_note = *child_note_iter;
+	Note min_note = *child_note_iter;
+	// note: does not call GetMaxNote and GetMinNote to minimize number of times through tree
+	while (child_note_iter != possible_notes_.begin_breadth_first()) {
+		tree<Note>::breadth_first_queued_iterator parent_note_iter = possible_notes_.parent<tree<Note>::breadth_first_queued_iterator>(child_note_iter);
+		Note parent_note = *parent_note_iter;
+		if (parent_note.absolute_pitch() > max_note.absolute_pitch()) {
+			max_note = parent_note;
+		}
+		else if (parent_note.absolute_pitch() < min_note.absolute_pitch()) {
+			min_note = parent_note;
+		}
+		child_note_iter = parent_note_iter;
+	}
+	return max_note.absolute_pitch() - min_note.absolute_pitch();
+}
+
 Note CounterpointWriter::ParallelMotion() {
 	int interval = cantus_firmus_[current_note_].pitch() - cantus_firmus_[current_note_ - 1].pitch();
 	Note next_note = counterpoint_[current_note_ - 1] + interval;
