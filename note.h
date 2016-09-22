@@ -44,6 +44,8 @@ public:
 	friend Note operator-(const Note& note1, const Note& note2);
 	Note& operator-=(int interval);
 
+	friend bool operator== (const Note& note1, const Note& note2);
+
 };
 
 #endif
