@@ -33,10 +33,10 @@ public:
 	Note operator--(int);
 
 	friend ostream& operator<<(ostream& output, const Note& note);
+
 	friend Note operator+(Note note, int interval);
 	friend Note operator+(int interval, const Note& note);
 	friend Note operator+(const Note& note1, const Note& note2);
-
 	Note& operator+=(int interval);
 
 	friend Note operator-(Note note, int interval);
@@ -44,7 +44,7 @@ public:
 	friend Note operator-(const Note& note1, const Note& note2);
 	Note& operator-=(int interval);
 
-	friend bool operator== (const Note& note1, const Note& note2);
+	friend bool operator==(const Note& note1, const Note& note2);
 	friend bool operator>(const Note& note1, const Note& note2);
 	friend bool operator<(const Note& note1, const Note& note2);
 	friend bool operator>=(const Note& note1, const Note& note2);
