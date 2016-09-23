@@ -46,6 +46,7 @@ public:
 
 	friend bool operator== (const Note& note1, const Note& note2);
 	friend bool operator>(const Note& note1, const Note& note2);
+	friend bool operator<(const Note& note1, const Note& note2);
 
 };
 
