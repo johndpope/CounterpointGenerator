@@ -227,3 +227,7 @@ bool operator<(const Note& note1, const Note& note2) {
 bool operator>=(const Note& note1, const Note& note2) {
 	return (note1 > note2 || note1 == note2);
 }
+
+bool operator<=(const Note& note1, const Note& note2) {
+	return (note1 < note2 || note1 == note2);
+}
