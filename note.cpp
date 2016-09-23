@@ -213,5 +213,5 @@ ostream& operator<<(ostream& output, const Note& note) {
 }
 
 bool operator== (const Note& note1, const Note& note2) {
-	return (note1.octave_ == note2.octave_ && note1.pitch_ == note2.pitch_);
+	return (note1.absolute_pitch() == note2.absolute_pitch());
 }
