@@ -15,7 +15,7 @@ private:
 public:
 	Staff();
 	Staff(const Staff& s);
-	Staff(bool is_treble_clef, vector<Note> notes) : notes_(notes) { is_treble_clef_ = is_treble_clef; }
+	Staff(bool is_treble_clef, vector<Note> notes);
 
 	vector<Note> notes() const;
 	bool is_treble_clef() const;

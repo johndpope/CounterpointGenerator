@@ -13,6 +13,10 @@ Staff::Staff(const Staff& s) : notes_(s.notes()) {
 	is_treble_clef_ = s.is_treble_clef();
 }
 
+Staff::Staff(bool is_treble_clef, vector<Note> notes) : notes_(notes) { 
+	is_treble_clef_ = is_treble_clef; 
+}
+
 vector<Note> Staff::notes() const {
 	return notes_;
 }
