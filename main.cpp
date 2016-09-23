@@ -19,8 +19,7 @@ int main() {
 
 	vector<Note> cantus_firmus_notes;
 	cantus_firmus_notes.insert(cantus_firmus_notes.end(), { j, k, l, m, n, p, q, r, s, t, u });
-	Staff cantus_firmus(cantus_firmus_notes), counterpoint;
-	cantus_firmus.ChangeClef();
+	Staff cantus_firmus(/* is_treble_clef = */ false, cantus_firmus_notes), counterpoint;
 
 	cout << cantus_firmus << endl;
 
