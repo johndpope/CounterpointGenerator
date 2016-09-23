@@ -15,7 +15,7 @@ private:
 public:
 	Staff();
 	Staff(const Staff& s);
-	Staff(vector<Note> notes) { for (int i = 0; i < notes.size(); ++i) notes_.push_back(notes[i]);	}
+	Staff(bool is_treble_clef, vector<Note> notes) { is_treble_clef_ = is_treble_clef; for (int i = 0; i < notes.size(); ++i) notes_.push_back(notes[i]); }
 
 	vector<Note> notes() const;
 	bool is_treble_clef() const;
