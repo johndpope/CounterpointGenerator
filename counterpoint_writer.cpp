@@ -109,9 +109,11 @@ void CounterpointWriter::GeneratePossibleNotes() {
 			set<int>::iterator leap_iter_begin = can_leap ? allowable_leaps_.begin() : allowable_steps_.begin();
 			set<int>::iterator leap_iter_end = can_leap ? allowable_leaps_.end() : allowable_steps_.end();
 			for (set<int>::iterator leap_iter = leap_iter_begin; leap_iter != leap_iter_end; ++leap_iter) {
+				if (CheckNote(tree_iter)) {
 				Note possible_note = *tree_iter + *leap_iter;
 				//cout << possible_note << " ";
 				possible_notes_.append_child(tree_iter, possible_note);
+				}
 			}
 		}
 		else {
