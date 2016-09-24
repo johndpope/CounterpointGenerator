@@ -26,6 +26,12 @@ public:
 	void NextNote();
 	void GeneratePossibleNotes();
 
+	/*
+	 * Checks if the Note is able to be part of the counterpoint when generating possible notes
+	 * e.g., is the range too high?
+	 */
+	bool CheckNote(tree<Note>::breadth_first_queued_iterator note_iter);
+
 	/* 
 	 * Gets the highest note on the branch of possible_notes_ the child_note is a part of.
 	 * Assumes the child_note is the latest note in this particular branch.

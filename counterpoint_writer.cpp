@@ -126,6 +126,10 @@ void CounterpointWriter::GeneratePossibleNotes() {
 	cout << "======================" << endl;
 }
 
+bool CounterpointWriter::CheckNote(tree<Note>::breadth_first_queued_iterator note_iter) {
+	return true;
+}
+
 Note CounterpointWriter::GetMaxNote(tree<Note>::breadth_first_queued_iterator child_note_iter) {
 	Note max_note = *child_note_iter;
 	while (child_note_iter != possible_notes_.begin_breadth_first()) {
